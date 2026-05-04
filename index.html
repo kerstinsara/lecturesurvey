@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>DEIN Feedback für uns</title>
+<title>DEIN Feedback für Öko</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
+#DESIGN
 <style>
   body {
     margin: 0;
@@ -89,23 +90,24 @@
 
 <body>
 
-<div class="card">
+#INHALT DER SEITE
+<div class="card"> #kasten in der mitte
 
   <div class="progress">
     <div class="bar" id="bar"></div>
   </div>
 
-  <form action="DEINE-FORMSPREE-URL" method="POST">
+  <form action="DEINE-FORMSPREE-URL" method="POST"> #hier muss formspree url rein!!!
 
     <div class="step active">
-      <h1>Wie zufrieden bist du mit der Vorlesung?</h1>
-      <input name="zufriedenheit" required />
+      <h1>Wenn du eine Sache ändern könntest, was wäre es?</h1>
+      <input name="firstthing" required />
       <button type="button" onclick="next()">Weiter</button>
     </div>
 
     <div class="step">
-      <h1>Was könnte besser sein?</h1>
-      <input name="verbesserung" required />
+      <h1>Fällt dir nochwas ein?</h1>
+      <input name="secondthing"  not required />
       <button type="submit">Absenden</button>
     </div>
 
@@ -113,11 +115,13 @@
 
 </div>
 
+#WAS IST DAS
 <script>
 let step = 0;
 const steps = document.querySelectorAll(".step");
 const bar = document.getElementById("bar");
 
+#LOGIK
 function next() {
   steps[step].classList.remove("active");
   step++;

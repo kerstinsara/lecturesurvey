@@ -27,11 +27,10 @@
     border-radius: 20px;
     padding: 40px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    transition: all 0.4s ease;
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 26px;
     margin-bottom: 20px;
   }
 
@@ -84,6 +83,19 @@
     background: #38bdf8;
     transition: width 0.3s;
   }
+
+  .thankyou-img {
+    width: 100%;
+    border-radius: 16px;
+    margin-top: 15px;
+  }
+
+  .quote {
+    margin-top: 15px;
+    font-size: 16px;
+    opacity: 0.9;
+    line-height: 1.4;
+  }
 </style>
 </head>
 
@@ -95,19 +107,34 @@
     <div class="bar" id="bar"></div>
   </div>
 
-  <form action="https://formspree.io/f/xdabebzb" method="POST">
+  <form id="form">
 
+    <!-- STEP 1 -->
     <div class="step active">
-      <h1>Wenn du eine Sache ändern könntest,
-        was wäre es?</h1>
+      <h1>Wenn du eine Sache ändern könntest,<br>was wäre es?</h1>
       <input name="firstthing" required />
       <button type="button" onclick="next()">Weiter</button>
     </div>
 
+    <!-- STEP 2 -->
     <div class="step">
       <h1>Fällt dir nochwas ein?</h1>
       <input name="secondthing" required />
       <button type="submit">Absenden</button>
+    </div>
+
+    <!-- STEP 3 THANK YOU -->
+    <div class="step">
+      <h1>Danke! 🚀</h1>
+
+      <img class="thankyou-img"
+           src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Aldrin_Apollo_11.jpg"
+           alt="Mondlandung Astronaut">
+
+      <div class="quote">
+        „Ein kleiner Augenblick für einen Menschen,<br>
+        aber ein großer für die Universität.“
+      </div>
     </div>
 
   </form>
@@ -118,13 +145,28 @@
 let step = 0;
 const steps = document.querySelectorAll(".step");
 const bar = document.getElementById("bar");
+const form = document.getElementById("form");
+
+function updateBar() {
+  bar.style.width = ((step) / (steps.length - 1)) * 100 + "%";
+}
 
 function next() {
   steps[step].classList.remove("active");
   step++;
   steps[step].classList.add("active");
-  bar.style.width = ((step) / (steps.length - 1)) * 100 + "%";
+  updateBar();
 }
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault(); // stop formspree redirect
+
+  steps[step].classList.remove("active");
+  step++;
+  steps[step].classList.add("active");
+
+  updateBar();
+});
 </script>
 
 </body>

@@ -116,14 +116,15 @@
     <!-- STEP 1 -->
     <div class="step active">
       <h1>Wenn du eine Sache ändern könntest, was wäre es?</h1>
-      <input name="firstthing" required />
+      <textarea name="firstthing" rows="3" required></textarea>
       <button type="button" onclick="next()">Weiter</button>
     </div>
 
     <!-- STEP 2 -->
     <div class="step">
       <h1>Fällt dir noch was ein?</h1>
-      <input name="secondthing" required />
+      <input name="secondthing" />
+      <button type="button" class="back-btn" onclick="back()">Zurück</button>
       <button type="submit">Absenden</button>
     </div>
 
@@ -158,6 +159,13 @@ function updateBar() {
 function next() {
   steps[step].classList.remove("active");
   step++;
+  steps[step].classList.add("active");
+  updateBar();
+}
+
+function back() {
+  steps[step].classList.remove("active");
+  step--;
   steps[step].classList.add("active");
   updateBar();
 }

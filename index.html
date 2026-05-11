@@ -40,12 +40,16 @@
   
   h1 {
     font-size: 26px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .highlight {
-    color: rgba(240, 111, 52, 0.85);
-    font-weight: 600;
+    color: rgb(255, 166, 64);
+    font-weight: bolder;
+  }
+
+  .highlight2 {
+    color: #38bdf8;
   }
 
   .subtext {
@@ -66,6 +70,7 @@
   .progress,
   input,
   textarea,
+
   .thankyou-img {
     width: 100%;
     box-sizing: border-box;
@@ -175,20 +180,106 @@
     to {opacity: 1; transform: translateY(0);}
   }
 
-  .progress {
-    height: 6px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 10px;
-    margin-bottom: 30px;
-    overflow: hidden;
-  }
+.progress {
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
 
-  .bar {
-    height: 100%;
-    width: 0%;
-    background: #38bdf8;
-    transition: width 0.3s;
-  }
+.bar {
+  height: 100%;
+  width: 0%;
+  background: #38bdf8;
+  transition: width 0.3s;
+}
+
+
+.thankyou-card {
+  margin-left: -40px;
+  margin-right: -40px;
+  margin-bottom: -40px; /* hebt card-padding auf */
+  height: calc(100% + 80px);
+
+  font-family: "Bebas Neue", sans-serif;
+
+  background-image: linear-gradient(
+    to bottom,
+    rgba(8,12,25,0.55),
+    rgba(8,12,25,0.92) ),
+    url("Astronaut.png");
+
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+
+  min-height: 500px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.45);
+
+  position: relative;
+  border-radius: 0px 0px 20px 20px;
+}
+
+.thankyou-overlay {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 400px;
+  color: white;
+}
+
+.thankyou-card h1 {
+  margin-top: -5px;
+  font-size: 56px;
+  line-height: 1;
+  margin-bottom: 0px;
+  font-weight: 800;
+  font-stretch: condensed;
+}
+
+.subtext2 {
+  font-size: 16px;
+  opacity: 0.8;
+  font-weight: 400;
+  font-stretch: condensed;
+}
+
+.mail-text {
+  margin-top: 40px;
+  font-weight: 700;
+}
+
+.thankyou-card input {
+  padding: 18px;
+  border-radius: 16px;
+  border: none;
+  margin-top: 15px;
+  margin-bottom: -15px;
+  font-size: 16px;
+}
+
+.thankyou-card .btn-row {
+  display: flex;
+  gap: 14px;
+}
+
+.thankyou-card button {
+  flex: 1;
+
+  padding: 16px;
+
+  border-radius: 16px;
+
+  border: none;
+
+  font-weight: bold;
+  cursor: pointer;
+}
 
 .thankyou-img {
   width: 100%;
@@ -201,12 +292,50 @@
   object-fit: cover;
 }
 
-  .quote {
-    margin-top: 5px;
-    font-size: 16px;
-    opacity: 0.9;
-    line-height: 1.4;
-  }
+.quote {
+  margin-top: 5px;
+  font-size: 16px;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.quotemailtext {
+  margin-top: 0px;
+  font-size: 20px;
+  opacity: 0.9;
+  line-height: 1.4;
+  font-weight: 550;
+  font-stretch: condensed;
+}
+
+.divider-blue {
+  border: none;
+  border-top: 3px solid #38bdf8;
+  width: 12%;
+  margin: 10px 0;
+}
+
+.email-box {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-top: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.quotemailtext {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.mail-icon {
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
 </style>
 </head>
 
@@ -215,7 +344,7 @@
 <div class="card">
 
   <div class="form-header">2026S404020 VO Ökonomie des öffentlichen Sektors</div> <!-- Titel der VO -->
-    <div class="progress">
+  <div class="progress">
     <div class="bar" id="bar"></div>
   </div>
 
@@ -232,7 +361,7 @@
       </div>
 
       <div class="btn-wrapper">
-        <button type="button" onclick="skip()">Keine Angabe</button>
+        <button type="button" onclick="setNoAnswer()">Keine Angabe</button>
       </div>
     </div>
 
@@ -273,26 +402,37 @@
     
     <!-- STEP 5 THANK YOU -->
     <div class="step">
-      <h1>Danke für dein Feedback! 🚀</h1>
+      <div class="thankyou-card">
+        <div class="thankyou-overlay">
 
-      <div class="quote">
-        Ein kleiner Augenblick für einen Menschen,<br>
-        aber ein großer für die Universität Innsbruck.
-      </div>
+          <h1>DANKE FÜR<br> <span class="highlight2">DEIN FEEDBACK!</span></h1>
 
-      <img class="thankyou-img"
-          src="Astronaut.png"
-          alt="Mondlandung Astronaut">
+          <hr class="divider-blue">
+      
+          <div class="subtext2">
+            Ein kleiner Augenblick für einen Menschen,<br>
+            aber ein großer für die Universität Innsbruck. <br><br><br><br><br><br><br>
+          </div>
 
-      <div class="quote">
-        Möchtest du die Ergebnisse per Mail bekommen?
-      </div>
+          <div class="email-box">
+            <div class="quotemailtext">
+              <svg class="mail-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" 
+                  viewBox="0 0 24 24" fill="none" stroke=#38bdf8 
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              MÖCHSTEST DU DIE ERGEBNISSE<br>PER E-MAIL BEKOMMEN?
+            </div>
 
-      <input type="email" name="email" placeholder="deine@email.at">
+            <input type="email" name="email" placeholder="deine@email.at">
 
-      <div class="btn-row">
-        <button type="button">Nein danke</button>
-        <button type="button" onclick="submitMail()">Anonym anmelden</button>
+            <div class="btn-row">
+              <button type="button">Nein danke</button>
+              <button type="button" onclick="submitMail()">Anonym anmelden</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -318,10 +458,37 @@ const bar = document.getElementById("bar");
 const form = document.getElementById("form");
 const input = document.querySelector('input[name="firstthing"]');
 const nextBtn = document.getElementById('nextBtn');
-const frequencyButtons = document.querySelectorAll(".btn-options button");
 const frequencyInput = document.getElementById("frequencyInput");
 const slider = document.getElementById("frequencySlider");
 const sliderLabel = document.getElementById("sliderLabel");
+const card = document.querySelector(".card");
+const SUPABASE_URL = "https://npfvurxupmvjhkiwkudc.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5wZnZ1cnh1cG12amhraXdrdWRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzMTk5MzMsImV4cCI6MjA5Mzg5NTkzM30.-nRPsD7McszSQMkqtbW-ms8110BZGAj7Tdcs1a5Log4";
+
+
+async function submitSurvey(data) {
+  const response = await fetch(
+    `${SUPABASE_URL}/rest/v1/ResponsesOeko`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`,
+        "Prefer": "return=minimal"
+      },
+      body: JSON.stringify(data)
+    }
+  );
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error("SUPABASE ERROR:", errorText);
+    alert(errorText);
+  }
+
+  return response.ok;
+}
 
 const values = [
   "Fast nie",
@@ -343,7 +510,7 @@ slider.addEventListener("input", () => {
 });
 
 //bei Loslassen automatisch weiter
-slider.addEventListener("mouseup", () => {
+slider.addEventListener("change", () => {
   if (!sliderUsed) return;
   const value = values[slider.value];
 
@@ -358,28 +525,6 @@ slider.addEventListener("mouseup", () => {
   sliderUsed = false
 });
 
-frequencyButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-
-    const value = btn.innerText;
-    frequencyInput.value = value;
-
-    // visuelle Auswahl
-    frequencyButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    //skip bei bestimmten Antworten
-    if (value === "Fast immer" || value === "Regelmäßig") {
-      skippedStep = true;
-      skip();
-    } else {
-      skippedStep = false;
-      next();
-    }
-
-  });
-});
-
 input.addEventListener('input', function () {
   if (input.value.trim().length > 0) {
     nextBtn.disabled = false;
@@ -389,7 +534,7 @@ input.addEventListener('input', function () {
 });
 
 function updateBar() {
-  bar.style.width = ((step) / (steps.length - 1)) * 100 + "%";
+  bar.style.width = ((step) / (steps.length - 2)) * 100 + "%";
 }
 
 function next() {
@@ -405,13 +550,20 @@ function skip() {
   steps[step].classList.add("active");
   updateBar();
   skippedStep = true;
-  frequencyInput.value = "Keine Angabe";
+}
+
+function setNoAnswer() {
+  steps[step].classList.remove("active");
+  step += 2;
+  steps[step].classList.add("active");
+  updateBar();
+  skippedStep = true;
+  frequencyInput.value = "Keine Angabe"
 }
 
 function back() {
   steps[step].classList.remove("active");
 
-  //skippedstep4 = true UND Frage 5
   if (skippedStep && step === 2) {
     step -= 2; //skip frage 3
   } else {
@@ -426,19 +578,23 @@ function back() {
 form.addEventListener("submit", async function(e) {
   e.preventDefault();
 
-  const formData = new FormData(form);
+  const data = {
+    frequency: frequencyInput.value,
+    reason: form.reason.value,
+    firstthing: form.firstthing.value,
+    secondthing: form.secondthing.value
+  };
 
-  await fetch("https://formspree.io/f/xdabebzb", {
-    method: "POST",
-    body: formData,
-    headers: { 'Accept': 'application/json' }
-  });
+  const success = await submitSurvey(data);
 
-  steps[step].classList.remove("active");
-  step++;
-  steps[step].classList.add("active");
-
-  updateBar();
+  if(success){
+    steps[step].classList.remove("active");
+    step++;
+    steps[step].classList.add("active");
+    updateBar();
+  } else {
+    alert("Fehler beim Speichern.");
+  }
 });
 
 async function submitMail() {
@@ -446,13 +602,27 @@ async function submitMail() {
 
   if (!email) return;
 
-  await fetch("https://formspree.io/f/mqenbwol", {
-    method: "POST",
-    body: new FormData(form),
-    headers: { 'Accept': 'application/json' }
-  });
+  const response = await fetch(
+    `${SUPABASE_URL}/rest/v1/MailsOeko`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`,
+        "Prefer": "return=minimal"
+      },
+      body: JSON.stringify({ email })
+    }
+  );
 
-  next();
+  if(response.ok){
+    next();
+  } else {
+    const errorText = await response.text();
+    console.error("SUPABASE ERROR:", errorText);
+    alert(errorText);
+  }
 }
 </script>
 </body>

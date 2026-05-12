@@ -647,9 +647,7 @@ form.addEventListener("submit", async function(e) {
   const success = await submitSurvey(data);
 
   if(success){
-    steps[step].classList.remove("active");
-    step++;
-    steps[step].classList.add("active");
+    next();
     updateBar();
   } else {
     alert("Fehler beim Speichern.");

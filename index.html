@@ -687,7 +687,13 @@ async function submitMail() {
     console.error("SUPABASE ERROR:", errorText);
     alert(errorText);
   }
-}
+};
+
+window.addEventListener('load', () => {
+  if (window.matchMedia("(max-width: 480px)").matches) {
+    scrollToCard();
+  }
+});
 </script>
 </body>
 </html>

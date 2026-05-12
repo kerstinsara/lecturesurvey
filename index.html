@@ -336,6 +336,10 @@
   margin-left: 8px;
 }
 
+.mobile-only {
+  display: none;
+}
+
 @media (max-width: 480px) {
   body {
     padding: 10px;
@@ -360,6 +364,10 @@
 
   .email-box {
     padding: 6px 7px; /* statt 24px 28px */
+  }
+
+  .mobile-only {
+    display: block;
   }
 }
 
@@ -394,7 +402,7 @@
 
     <!-- STEP 2 -->
     <div class="step">
-      <h1>Woran hat's gelegen? <span class="subtext">(fragt man sich immer)</span> </h1>
+      <h1>Woran hat's gelegen? <br class="mobile-only"> <span class="subtext">(fragt man sich immer)</span> </h1>
       <input name="reason"  placeholder="Ich sag mal so..."/>
 
       <div class="btn-row">

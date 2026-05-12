@@ -577,7 +577,9 @@ function next() {
   step++;
   steps[step].classList.add("active");
   updateBar();
-  scrollToCard()
+  if (window.matchMedia("(max-width: 480px)").matches) {
+    scrollToCard();
+  }
 }
 
 function skip() {
@@ -585,7 +587,9 @@ function skip() {
   step += 2;
   steps[step].classList.add("active");
   updateBar();
-  scrollToCard()
+  if (window.matchMedia("(max-width: 480px)").matches) {
+    scrollToCard();
+  }
   skippedStep = true;
 }
 
@@ -594,7 +598,9 @@ function setNoAnswer() {
   step += 2;
   steps[step].classList.add("active");
   updateBar();
-  scrollToCard()
+  if (window.matchMedia("(max-width: 480px)").matches) {
+    scrollToCard();
+  }
   skippedStep = true;
   frequencyInput.value = "Keine Angabe"
 }
@@ -610,7 +616,9 @@ function back() {
 
   steps[step].classList.add("active");
   updateBar();
-  scrollToCard()
+  if (window.matchMedia("(max-width: 480px)").matches) {
+    scrollToCard();
+  }
 }
 
 function scrollToCard2() {

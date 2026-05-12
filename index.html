@@ -614,7 +614,7 @@ function back() {
 
 function scrollToCard() {
   if (window.innerWidth <= 480) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.querySelector('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
   

@@ -45,7 +45,7 @@
   }
 
   .highlight {
-    color: rgb(255, 166, 64);
+    color: rgb(228, 104, 253); <!-- rgb(255, 166, 64) -->
     font-weight: bolder;
   }
 
@@ -118,21 +118,17 @@ button {
   pointer-events: none;
 }
 
-  button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 
-  .btn-options button.active {
-    background: rgba(218, 102, 48, 0.85);
-    color: white;
-  }
 
-  .btn-wrapper {
+.btn-wrapper {
   position: relative;
   width: 100%;
   margin-top: 10px;
-  }
+}
 
 .btn-wrapper button {
   width: 100%;
@@ -391,7 +387,7 @@ button {
   }
 
   .thankyou-card h1 {
-    font-size: 55px;
+    font-size: 50px;
   }
 
   .email-box {
@@ -476,7 +472,7 @@ textarea {
 
       <div class="slider-container">
         <input type="range" min="0" max="4" step="1" id="frequencySlider">
-        <div class="slider-label" id="sliderLabel">Mal so, mal so</div>
+        <div class="slider-label" id="sliderLabel"></div>
       </div>
 
       <div class="btn-row">
@@ -505,7 +501,7 @@ textarea {
 
       <div class="slider-container">
         <input type="range" min="0" max="4" step="1" id="relevanceSlider">
-        <div class="slider-label" id="sliderLabel2">Teils, teils</div>
+        <div class="slider-label" id="sliderLabel2"></div>
       </div>
 
       <div class="btn-row">
@@ -595,18 +591,18 @@ const SUPABASE_URL = "https://npfvurxupmvjhkiwkudc.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5wZnZ1cnh1cG12amhraXdrdWRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzMTk5MzMsImV4cCI6MjA5Mzg5NTkzM30.-nRPsD7McszSQMkqtbW-ms8110BZGAj7Tdcs1a5Log4";
 
 const values = [
-  "Fast nie",
+  "Nie",
   "Selten",
   "Mal so, mal so",
-  "Regelmäßig",
-  "Fast immer"
+  "Häufig",
+  "Immer"
 ];
 const values2 = [
   "Überhaupt nicht relevant",
   "Wenig relevant",
   "Teils, teils",
   "Relevant",
-  "Sehr relevant"
+  "Super relevant"
 ];
 
 async function submitSurvey(data) {
@@ -634,7 +630,7 @@ async function submitSurvey(data) {
 }
 
 //1. Slider
-sliderLabel.textContent = "Stammgast oder Gastauftritt?";
+sliderLabel.textContent = "Gastauftritt oder Stammgast?";
 frequencyInput.value = "";
 
 slider.addEventListener("input", () => {
@@ -642,6 +638,11 @@ slider.addEventListener("input", () => {
   sliderLabel.textContent = value;
   frequencyInput.value = value;
   sliderUsed = true
+   if (value === "Immer" && value === "Häufig") {
+    skippedStep = true;
+  } else {
+    skippedStep = false;
+  }
 });
 
 //bei Loslassen am Handy automatisch weiter
@@ -649,7 +650,7 @@ slider.addEventListener("change", () => {
   if (!sliderUsed) return;
   if (window.matchMedia("(max-width: 480px)").matches) {
     const value = values[slider.value];
-    if (value === "Fast immer" || value === "Regelmäßig") {
+    if (value === "Immer" || value === "Häufig") {
       skippedStep = true;
       form.reason.value = "";
       skip();
@@ -663,7 +664,7 @@ slider.addEventListener("change", () => {
 
 function confirmSlider() {
   const value = values[slider.value];
-  if (value === "Fast immer" || value === "Regelmäßig"|| value === "") {
+  if (value === "Immer" || value === "Häufig"|| value === "") {
     skippedStep = true;
     form.reason.value = "";
     skip();
@@ -682,7 +683,7 @@ input.addEventListener('input', function () {
 });
 
 //2. Slider
-sliderLabel2.textContent = "Lebensverändernd oder Pflichtprogramm?";
+sliderLabel2.textContent = "Pflichtprogramm oder wirklich interessant?";
 relevanceInput.value = ""
 
 slider2.addEventListener("input", () => {
@@ -751,7 +752,6 @@ function back() {
 
   steps[step].classList.add("active");
   updateBar();
-  skippedStep = false;
   if (window.matchMedia("(max-width: 480px)").matches) {
     scrollToCard();
   }

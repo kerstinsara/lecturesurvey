@@ -649,17 +649,19 @@ slider.addEventListener("input", () => {
 slider.addEventListener("touchend", () => {
   if (!sliderUsed) return;
   if (window.matchMedia("(max-width: 480px)").matches) {
-    const value = values[slider.value];
-    if (value === "Immer" || value === "Häufig") {
-      skippedStep = true;
-      form.reason.value = "";
-      skip();
-    } else {
-      skippedStep = false;
-      next();
-    }
-  sliderUsed = false;  
-  }, 600); // 600ms Verzögerung, anpassen nach Bedarf
+    setTimeout(() => {
+      const value = values[slider.value];
+      if (value === "Fast immer" || value === "Regelmäßig") {
+        skippedStep = true;
+        form.reason.value = "";
+        skip();
+      } else {
+        skippedStep = false;
+        next();
+      }
+      sliderUsed = false;
+    }, 600); // 600ms Verzögerung, anpassen nach Bedarf
+  }
 });
 
 function confirmSlider() {

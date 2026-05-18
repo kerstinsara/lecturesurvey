@@ -658,8 +658,8 @@ slider.addEventListener("change", () => {
       skippedStep = false;
       next();
     }
+  sliderUsed = false;  
   }
-  sliderUsed = false;
 });
 
 function confirmSlider() {
@@ -697,8 +697,8 @@ slider2.addEventListener("change", () => {
   if (!sliderUsed) return;
   if (window.matchMedia("(max-width: 480px)").matches) {
     next();
-  }
   sliderUsed = false;
+  }
 });
 
 function confirmSlider2() {

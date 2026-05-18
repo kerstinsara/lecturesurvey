@@ -660,7 +660,7 @@ slider.addEventListener("touchend", () => {
         next();
       }
       sliderUsed = false;
-    }, 600); // 600ms Verzögerung, anpassen nach Bedarf
+    }, 500); // 600ms Verzögerung
   }
 });
 
@@ -698,8 +698,10 @@ slider2.addEventListener("input", () => {
 slider2.addEventListener("touchend", () => {
   if (!sliderUsed) return;
   if (window.matchMedia("(max-width: 480px)").matches) {
-    next();
-  sliderUsed = false;
+    setTimeout(() => {
+      next();
+      sliderUsed = false;
+    }, 600);
   }
 });
 
